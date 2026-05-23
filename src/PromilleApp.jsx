@@ -369,7 +369,7 @@ export default function PromilleApp() {
       `}</style>
 
       <div className="body-font min-h-screen w-full text-white relative overflow-hidden" style={{
-        background: 'linear-gradient(180deg, #0a0814 0%, #14101e 50%, #0a0814 100%)',
+        background: 'linear-gradient(135deg, #d4ff00 0%, #ff2d92 100%)',
         minHeight: '100vh',
       }}>
         <div className="absolute inset-0 grain pointer-events-none" />
@@ -435,23 +435,13 @@ function WelcomeScreen({ onCreate, onJoin }) {
     <div className="flex-1 flex flex-col px-6 py-12 slide-up">
       <div className="flex-1 flex flex-col justify-center items-center text-center">
         <div className="mb-3 text-5xl">🍻</div>
-        <h1 className="display-font text-5xl mb-1 leading-none" style={{
-          background: 'linear-gradient(135deg, #d4ff00 0%, #ff2d92 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-        }}>
+        <h1 className="display-font text-5xl mb-1 leading-none text-black">
           EMILIES
         </h1>
-        <h2 className="display-font text-3xl mb-3" style={{
-          background: 'linear-gradient(135deg, #ff2d92 0%, #d4ff00 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-        }}>
+        <h2 className="display-font text-3xl mb-3 text-black">
           PROMILLEKALKULATOR
         </h2>
-        <p className="text-white/50 text-sm max-w-xs">
+        <p className="text-black/60 text-sm max-w-xs">
           Logg drikken dine, og se promillen stige
         </p>
       </div>
@@ -460,22 +450,22 @@ function WelcomeScreen({ onCreate, onJoin }) {
           onClick={onCreate}
           className="w-full py-5 rounded-2xl font-bold text-lg transition-transform active:scale-95"
           style={{
-            background: 'linear-gradient(135deg, #d4ff00 0%, #a3e635 100%)',
+            background: 'linear-gradient(135deg, #fffbd9 0%, #fffbd9 100%)',
             color: '#0a0814',
-            boxShadow: '0 8px 32px rgba(212,255,0,0.25)',
+            boxShadow: '0 8px 32px rgba(250, 250, 250, 0.42)',
           }}
         >
           Start en ny kveld
         </button>
         <button
           onClick={onJoin}
-          className="w-full py-5 rounded-2xl font-semibold text-lg glass-strong transition-transform active:scale-95"
+          className="w-full py-5 rounded-2xl font-semibold text-lg glass-strong text-black transition-transform active:scale-95"
         >
           Bli med på en kveld
         </button>
       </div>
-      <p className="text-center text-white/30 text-xs px-4">
-        Have fun! Ikke gjør noe jeg ville gjort
+      <p className="text-center text-black/40 text-xs px-4">
+        Have fun! 
       </p>
     </div>
   );
@@ -500,9 +490,9 @@ function CreateEventScreen({ onBack, onSubmit, error }) {
 
   return (
     <div className="flex-1 flex flex-col px-6 py-8 slide-up">
-      <button onClick={onBack} className="text-white/60 text-sm mb-6 self-start hover:text-white">← Tilbake</button>
-      <h2 className="display-font text-4xl mb-1">Start en kveld</h2>
-      <p className="text-white/50 mb-8 text-sm">Gi kvelden et navn og fyll inn informasjonen din</p>
+      <button onClick={onBack} className="text-black/60 text-sm mb-6 self-start hover:text-black">← Tilbake</button>
+      <h2 className="display-font text-4xl mb-1 text-black">Start en kveld</h2>
+      <p className="text-black/50 mb-8 text-sm">Gi kvelden et navn og fyll inn informasjonen din</p>
 
       <div className="space-y-4 flex-1">
         <Field label="Navn på kvelden">
@@ -510,7 +500,7 @@ function CreateEventScreen({ onBack, onSubmit, error }) {
             value={eventName}
             onChange={e => setEventName(e.target.value)}
             placeholder="Sommerfest"
-            className="w-full px-4 py-3 rounded-xl glass text-white outline-none focus:border-white/30"
+            className="w-full px-4 py-3 rounded-xl glass text-black outline-none focus:border-black/30"
           />
         </Field>
         <Field label="Ditt navn">
@@ -518,7 +508,7 @@ function CreateEventScreen({ onBack, onSubmit, error }) {
             value={name}
             onChange={e => setName(e.target.value)}
             placeholder="Emilie"
-            className="w-full px-4 py-3 rounded-xl glass text-white outline-none focus:border-white/30"
+            className="w-full px-4 py-3 rounded-xl glass text-black outline-none focus:border-black/30"
           />
         </Field>
         <Field label="Vekt (kg)">
@@ -528,7 +518,7 @@ function CreateEventScreen({ onBack, onSubmit, error }) {
             value={weight}
             onChange={e => setWeight(e.target.value)}
             placeholder="65"
-            className="w-full px-4 py-3 rounded-xl glass text-white outline-none focus:border-white/30"
+            className="w-full px-4 py-3 rounded-xl glass text-black outline-none focus:border-black/30"
           />
         </Field>
         <Field label="Kjønn">
@@ -542,7 +532,7 @@ function CreateEventScreen({ onBack, onSubmit, error }) {
             <AlertCircle size={14} /> {error}
           </div>
         )}
-        <p className="text-white/30 text-xs">
+        <p className="text-black/50 text-xs">
           Vekt og kjønn brukes for å beregne promille
         </p>
       </div>
@@ -582,9 +572,9 @@ function JoinEventScreen({ onBack, onSubmit, error, prefillCode }) {
 
   return (
     <div className="flex-1 flex flex-col px-6 py-8 slide-up">
-      <button onClick={onBack} className="text-white/60 text-sm mb-6 self-start hover:text-white">← Tilbake</button>
+      <button onClick={onBack} className="text-black/60 text-sm mb-6 self-start hover:text-black">← Tilbake</button>
       <h2 className="display-font text-4xl mb-1">Bli med</h2>
-      <p className="text-white/50 mb-8 text-sm">Bruk koden du fikk fra den som lagde kvelden</p>
+      <p className="text-black/50 mb-8 text-sm">Bruk koden du fikk fra den som lagde kvelden</p>
 
       <div className="space-y-4 flex-1">
         <Field label="Kveldens kode">
@@ -593,7 +583,7 @@ function JoinEventScreen({ onBack, onSubmit, error, prefillCode }) {
             onChange={e => setCode(e.target.value.toUpperCase())}
             placeholder="ABC123"
             maxLength={6}
-            className="w-full px-4 py-3 rounded-xl glass text-white outline-none focus:border-white/30 tracking-widest text-center text-2xl display-font"
+            className="w-full px-4 py-3 rounded-xl glass text-black outline-none focus:border-black/30 tracking-widest text-center text-2xl display-font"
           />
         </Field>
         {error && (
@@ -606,7 +596,7 @@ function JoinEventScreen({ onBack, onSubmit, error, prefillCode }) {
             value={name}
             onChange={e => setName(e.target.value)}
             placeholder="Kari"
-            className="w-full px-4 py-3 rounded-xl glass text-white outline-none focus:border-white/30"
+            className="w-full px-4 py-3 rounded-xl glass text-black outline-none focus:border-black/30"
           />
         </Field>
         <Field label="Vekt (kg)">
@@ -616,7 +606,7 @@ function JoinEventScreen({ onBack, onSubmit, error, prefillCode }) {
             value={weight}
             onChange={e => setWeight(e.target.value)}
             placeholder="65"
-            className="w-full px-4 py-3 rounded-xl glass text-white outline-none focus:border-white/30"
+            className="w-full px-4 py-3 rounded-xl glass text-black outline-none focus:border-black/30"
           />
         </Field>
         <Field label="Kjønn">
@@ -666,17 +656,17 @@ function MainHub({ user, eventData, drinks, now, copied, shareCopied, showHistor
     <div className="flex-1 flex flex-col px-5 py-6 pb-32">
       <div className="flex items-center justify-between mb-6">
         <div className="flex-1 min-w-0">
-          <div className="text-white/40 text-xs uppercase tracking-wider">Kveld</div>
+          <div className="text-black/40 text-xs uppercase tracking-wider">Kveld</div>
           <div className="text-lg font-bold truncate">{eventData.name}</div>
         </div>
         <button
           onClick={onCopyCode}
-          className="glass px-3 py-2 rounded-xl flex items-center gap-2 text-sm font-mono hover:bg-white/10"
+          className="glass px-3 py-2 rounded-xl flex items-center gap-2 text-sm font-mono hover:bg-black/10"
         >
-          {copied ? <Check size={14} className="text-lime-300" /> : <Copy size={14} className="text-white/50" />}
+          {copied ? <Check size={14} className="text-lime-300" /> : <Copy size={14} className="text-black/50" />}
           <span className="display-font tracking-widest">{eventData.code}</span>
         </button>
-        <button onClick={onLeave} className="ml-2 p-2 text-white/40 hover:text-white">
+        <button onClick={onLeave} className="ml-2 p-2 text-black/40 hover:text-black">
           <LogOut size={18} />
         </button>
       </div>
@@ -693,12 +683,12 @@ function MainHub({ user, eventData, drinks, now, copied, shareCopied, showHistor
           background: `radial-gradient(circle at 50% 50%, ${status.color}33, transparent 60%)`,
         }} />
         <div className="relative">
-          <div className="text-white/40 text-xs uppercase tracking-wider mb-1">Din promille</div>
+          <div className="text-black/40 text-xs uppercase tracking-wider mb-1">Din promille</div>
           <div className="flex items-baseline gap-2 mb-3">
             <div className="display-font text-8xl leading-none" style={{ color: status.color }}>
               {formatBAC(myBAC)}
             </div>
-            <div className="text-white/40 text-xl">‰</div>
+            <div className="text-black/40 text-xl">‰</div>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-2xl">{status.emoji}</span>
@@ -709,7 +699,7 @@ function MainHub({ user, eventData, drinks, now, copied, shareCopied, showHistor
               {status.label}
             </div>
           </div>
-          <div className="mt-4 text-white/40 text-xs flex items-center gap-1">
+          <div className="mt-4 text-black/40 text-xs flex items-center gap-1">
             <Clock size={11} /> {myDrinks.length} {myDrinks.length === 1 ? 'drikke' : 'drikker'} logget
           </div>
         </div>
@@ -732,7 +722,7 @@ function MainHub({ user, eventData, drinks, now, copied, shareCopied, showHistor
         <div className="flex items-center gap-2 mb-3">
           <Trophy size={16} className="text-yellow-400" />
           <h3 className="display-font text-2xl">TOPPLISTE</h3>
-          <div className="ml-auto text-white/30 text-xs flex items-center gap-1">
+          <div className="ml-auto text-black/30 text-xs flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-lime-300 animate-pulse" />
             Live
           </div>
@@ -751,14 +741,14 @@ function MainHub({ user, eventData, drinks, now, copied, shareCopied, showHistor
         >
           <Sparkles size={16} className="text-pink-400" />
           <h3 className="display-font text-2xl">SISTE DRIKKER</h3>
-          <span className="ml-auto text-white/30">
+          <span className="ml-auto text-black/30">
             {showHistory ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
           </span>
         </button>
         {showHistory && (
           <div className="space-y-2 slide-up">
             {allDrinks.length === 0 && (
-              <div className="text-white/30 text-sm text-center py-6 glass rounded-2xl">
+              <div className="text-black/30 text-sm text-center py-6 glass rounded-2xl">
                 Ingen drikker logget ennå
               </div>
             )}
@@ -769,7 +759,7 @@ function MainHub({ user, eventData, drinks, now, copied, shareCopied, showHistor
         )}
       </div>
 
-      <p className="text-white/20 text-xs text-center mt-8 px-4 leading-relaxed">
+      <p className="text-black/20 text-xs text-center mt-8 px-4 leading-relaxed">
         Promillen er kun et estimat. Jeg er ingen proff
       </p>
     </div>
@@ -792,7 +782,7 @@ function ScoreRow({ entry, rank }) {
           {entry.name}
           {entry.isMe && <span className="text-xs text-lime-300 font-normal">deg</span>}
         </div>
-        <div className="text-white/40 text-xs">
+        <div className="text-black/40 text-xs">
           {entry.drinkCount} {entry.drinkCount === 1 ? 'drikke' : 'drikker'} · {status.label}
         </div>
       </div>
@@ -800,7 +790,7 @@ function ScoreRow({ entry, rank }) {
         <div className="display-font text-3xl leading-none" style={{ color: status.color }}>
           {formatBAC(entry.bac)}
         </div>
-        <div className="text-white/30 text-xs">‰</div>
+        <div className="text-black/30 text-xs">‰</div>
       </div>
     </div>
   );
@@ -816,11 +806,11 @@ function DrinkRow({ drink }) {
       )}
       <div className="flex-1 min-w-0">
         <div className="font-semibold text-sm">{drink.userName}</div>
-        <div className="text-white/50 text-xs">
+        <div className="text-black/50 text-xs">
           {drink.volumeMl} ml · {String(drink.alcoholPercent).replace('.', ',')}%
         </div>
       </div>
-      <div className="text-white/40 text-xs">{formatTime(drink.timestamp)}</div>
+      <div className="text-black/40 text-xs">{formatTime(drink.timestamp)}</div>
     </div>
   );
 }
@@ -866,18 +856,19 @@ function AddDrinkModal({ onClose, onSubmit }) {
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center body-font" style={{ background: 'rgba(0,0,0,0.7)' }}>
       <div className="w-full max-w-md slide-up rounded-t-3xl sm:rounded-3xl p-6 max-h-[92vh] overflow-y-auto no-scrollbar" style={{
-        background: 'linear-gradient(180deg, #1a1428 0%, #14101e 100%)',
+        //background: 'linear-gradient(180deg, #1a1428 0%, #14101e 100%)',
+        background: 'linear-gradient(135deg, #d4ff00 0%, #ff2d92 100%)',
         border: '1px solid rgba(255,255,255,0.1)',
       }}>
         <div className="flex items-center justify-between mb-5">
           <h3 className="display-font text-3xl">NY DRIKKE</h3>
-          <button onClick={onClose} className="text-white/60 hover:text-white p-1">
+          <button onClick={onClose} className="text-black/60 hover:text-black p-1">
             <X size={22} />
           </button>
         </div>
 
         <div className="mb-5">
-          <div className="text-white/40 text-xs uppercase tracking-wider mb-2">Bilde</div>
+          <div className="text-black/40 text-xs uppercase tracking-wider mb-2">Bilde</div>
           <input
             ref={fileInput}
             type="file"
@@ -899,7 +890,7 @@ function AddDrinkModal({ onClose, onSubmit }) {
                 </div>
               </>
             ) : (
-              <div className="flex flex-col items-center text-white/40">
+              <div className="flex flex-col items-center text-black/40">
                 <Camera size={32} className="mb-2" />
                 <span className="text-sm">{processing ? 'Behandler...' : 'Ta bilde'}</span>
               </div>
@@ -908,16 +899,16 @@ function AddDrinkModal({ onClose, onSubmit }) {
         </div>
 
         <div className="mb-5">
-          <div className="text-white/40 text-xs uppercase tracking-wider mb-2">Hurtigvalg</div>
+          <div className="text-black/40 text-xs uppercase tracking-wider mb-2">Hurtigvalg</div>
           <div className="grid grid-cols-3 gap-2">
             {DRINK_PRESETS.map(p => (
               <button
                 key={p.name}
                 onClick={() => applyPreset(p)}
-                className="glass rounded-xl p-2 text-center hover:bg-white/10 active:scale-95 transition"
+                className="glass rounded-xl p-2 text-center hover:bg-black/10 active:scale-95 transition"
               >
                 <div className="text-2xl mb-0.5">{p.icon}</div>
-                <div className="text-[10px] text-white/70 leading-tight">{p.name}</div>
+                <div className="text-[10px] text-black/70 leading-tight">{p.name}</div>
               </button>
             ))}
           </div>
@@ -931,7 +922,7 @@ function AddDrinkModal({ onClose, onSubmit }) {
               value={volumeMl}
               onChange={e => setVolumeMl(e.target.value)}
               placeholder="330"
-              className="w-full px-4 py-3 rounded-xl glass text-white outline-none focus:border-white/30"
+              className="w-full px-4 py-3 rounded-xl glass text-black outline-none focus:border-black/30"
             />
           </Field>
           <Field label="Alkohol %">
@@ -941,7 +932,7 @@ function AddDrinkModal({ onClose, onSubmit }) {
               value={alcoholPercent}
               onChange={e => setAlcoholPercent(e.target.value)}
               placeholder="4,7"
-              className="w-full px-4 py-3 rounded-xl glass text-white outline-none focus:border-white/30"
+              className="w-full px-4 py-3 rounded-xl glass text-black outline-none focus:border-black/30"
             />
           </Field>
         </div>
@@ -966,7 +957,7 @@ function AddDrinkModal({ onClose, onSubmit }) {
 function Field({ label, children }) {
   return (
     <div>
-      <div className="text-white/40 text-xs uppercase tracking-wider mb-2">{label}</div>
+      <div className="text-black/40 text-xs uppercase tracking-wider mb-2">{label}</div>
       {children}
     </div>
   );
@@ -976,7 +967,7 @@ function GenderButton({ active, onClick, label }) {
   return (
     <button
       onClick={onClick}
-      className={`py-3 rounded-xl font-semibold transition ${active ? 'text-black' : 'text-white/70 glass'}`}
+      className={`py-3 rounded-xl font-semibold transition ${active ? 'text-black' : 'text-black/70 glass'}`}
       style={active ? {
         background: 'linear-gradient(135deg, #d4ff00 0%, #a3e635 100%)',
         boxShadow: '0 4px 20px rgba(212,255,0,0.2)',
