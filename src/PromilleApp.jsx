@@ -50,7 +50,7 @@ const calculateBAC = (drinks, user, now) => {
 };
 
 const getStatusFromBAC = (bac) => {
-  if (bac < 0.1) return { label: 'Edru', color: '#1bb9e9', emoji: '💧' };
+  if (bac < 0.1) return { label: 'Edru', color: '#56c3e4', emoji: '💧' };
   if (bac < 0.3) return { label: 'Lett brisen', color: '#a3e635', emoji: '🍻' };
   if (bac < 0.6) return { label: 'I siget', color: '#facc15', emoji: '😄' };
   if (bac < 1.0) return { label: 'Full', color: '#fb923c', emoji: '🥴' };
@@ -663,8 +663,8 @@ function MainHub({ user, eventData, drinks, now, copied, shareCopied, showHistor
           onClick={onCopyCode}
           className="glass px-3 py-2 rounded-xl flex items-center gap-2 text-sm font-mono hover:bg-black/10"
         >
-          {copied ? <Check size={14} className="text-lime-300" /> : <Copy size={14} className="text-black/50" />}
-          <span className="display-font tracking-widest">{eventData.code}</span>
+          {copied ? <Check size={14} className="text-black-300" /> : <Copy size={14} className="text-black/50" />}
+          <span className="display-font tracking-widest text-black">{eventData.code}</span>
         </button>
         <button onClick={onLeave} className="ml-2 p-2 text-black/40 hover:text-black">
           <LogOut size={18} />
@@ -675,7 +675,7 @@ function MainHub({ user, eventData, drinks, now, copied, shareCopied, showHistor
         onClick={onShare}
         className="w-full py-3 rounded-xl glass-strong text-sm font-semibold mb-5 flex items-center justify-center gap-2 active:scale-95 transition text-black"
       >
-        {shareCopied ? <><Check size={16} className="text-lime-300" /> Lenken er kopiert!</> : <>📲 Del lenke med de andre</>}
+        {shareCopied ? <><Check size={16} className="text-black-300" /> Lenken er kopiert!</> : <>📲 Del lenke med de andre</>}
       </button>
 
       <div className="glass-strong rounded-3xl p-6 mb-5 relative overflow-hidden">
@@ -723,7 +723,7 @@ function MainHub({ user, eventData, drinks, now, copied, shareCopied, showHistor
           <Trophy size={16} className="text-black-400" />
           <h3 className="display-font text-2xl text-black">TOPPLISTE</h3>
           <div className="ml-auto text-black/30 text-xs flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-lime-300 animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-black-300 animate-pulse" />
             Live
           </div>
         </div>
@@ -778,9 +778,9 @@ function ScoreRow({ entry, rank }) {
         {isTop ? <Crown size={20} fill="#facc15" /> : `#${rank}`}
       </div>
       <div className="flex-1 min-w-0">
-        <div className="font-semibold truncate flex items-center gap-2">
+        <div className="font-semibold truncate flex items-center gap-2 text-black">
           {entry.name}
-          {entry.isMe && <span className="text-xs text-lime-300 font-normal">deg</span>}
+          {entry.isMe && <span className="text-xs text-black-300 font-normal">deg</span>}
         </div>
         <div className="text-black/40 text-xs">
           {entry.drinkCount} {entry.drinkCount === 1 ? 'drikke' : 'drikker'} · {status.label}
