@@ -50,7 +50,7 @@ const calculateBAC = (drinks, user, now) => {
 };
 
 const getStatusFromBAC = (bac) => {
-  if (bac < 0.1) return { label: 'Edru', color: '#94a3b8', emoji: '💧' };
+  if (bac < 0.1) return { label: 'Edru', color: '#1bb9e9', emoji: '💧' };
   if (bac < 0.3) return { label: 'Lett brisen', color: '#a3e635', emoji: '🍻' };
   if (bac < 0.6) return { label: 'I siget', color: '#facc15', emoji: '😄' };
   if (bac < 1.0) return { label: 'Full', color: '#fb923c', emoji: '🥴' };
@@ -657,7 +657,7 @@ function MainHub({ user, eventData, drinks, now, copied, shareCopied, showHistor
       <div className="flex items-center justify-between mb-6">
         <div className="flex-1 min-w-0">
           <div className="text-black/40 text-xs uppercase tracking-wider">Kveld</div>
-          <div className="text-lg font-bold truncate">{eventData.name}</div>
+          <div className="text-lg text-black font-bold truncate">{eventData.name}</div>
         </div>
         <button
           onClick={onCopyCode}
@@ -673,7 +673,7 @@ function MainHub({ user, eventData, drinks, now, copied, shareCopied, showHistor
 
       <button
         onClick={onShare}
-        className="w-full py-3 rounded-xl glass-strong text-sm font-semibold mb-5 flex items-center justify-center gap-2 active:scale-95 transition"
+        className="w-full py-3 rounded-xl glass-strong text-sm font-semibold mb-5 flex items-center justify-center gap-2 active:scale-95 transition text-black"
       >
         {shareCopied ? <><Check size={16} className="text-lime-300" /> Lenken er kopiert!</> : <>📲 Del lenke med de andre</>}
       </button>
@@ -709,9 +709,9 @@ function MainHub({ user, eventData, drinks, now, copied, shareCopied, showHistor
         onClick={onAddDrink}
         className="w-full py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-transform active:scale-95 mb-6"
         style={{
-          background: 'linear-gradient(135deg, #d4ff00 0%, #a3e635 100%)',
+          background: 'linear-gradient(135deg, #fffbd9 0%, #fffbd9 100%)',
           color: '#0a0814',
-          boxShadow: '0 8px 32px rgba(212,255,0,0.2)',
+          boxShadow: '0 8px 32px rgba(250, 250, 250, 0.42)',
         }}
       >
         <Plus size={22} strokeWidth={3} />
@@ -720,8 +720,8 @@ function MainHub({ user, eventData, drinks, now, copied, shareCopied, showHistor
 
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-3">
-          <Trophy size={16} className="text-yellow-400" />
-          <h3 className="display-font text-2xl">TOPPLISTE</h3>
+          <Trophy size={16} className="text-black-400" />
+          <h3 className="display-font text-2xl text-black">TOPPLISTE</h3>
           <div className="ml-auto text-black/30 text-xs flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-lime-300 animate-pulse" />
             Live
@@ -739,8 +739,8 @@ function MainHub({ user, eventData, drinks, now, copied, shareCopied, showHistor
           onClick={onToggleHistory}
           className="w-full flex items-center gap-2 mb-3 text-left"
         >
-          <Sparkles size={16} className="text-pink-400" />
-          <h3 className="display-font text-2xl">SISTE DRIKKER</h3>
+          <Sparkles size={16} className="text-black-400" />
+          <h3 className="display-font text-2xl text-black">SISTE DRIKKER</h3>
           <span className="ml-auto text-black/30">
             {showHistory ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
           </span>
@@ -771,9 +771,9 @@ function ScoreRow({ entry, rank }) {
   const isTop = rank === 1 && entry.bac > 0.1;
 
   return (
-    <div className={`flex items-center gap-3 p-3 rounded-2xl ${entry.isMe ? 'glass-strong' : 'glass'} ${isTop ? 'ring-1 ring-yellow-400/30' : ''}`}>
+    <div className={`flex items-center gap-3 p-3 rounded-2xl ${entry.isMe ? 'glass-strong' : 'glass'} ${isTop ? 'ring-1 ring-black-400/30' : ''}`}>
       <div className="w-8 h-8 flex items-center justify-center font-bold text-sm" style={{
-        color: rank === 1 ? '#facc15' : rank === 2 ? '#cbd5e1' : rank === 3 ? '#d97706' : 'rgba(255,255,255,0.4)',
+        color: rank === 1 ? '#000000' : rank === 2 ? '#000000' : rank === 3 ? '#000000' : 'rgba(0, 0, 0, 0.4)',
       }}>
         {isTop ? <Crown size={20} fill="#facc15" /> : `#${rank}`}
       </div>
@@ -861,7 +861,7 @@ function AddDrinkModal({ onClose, onSubmit }) {
         border: '1px solid rgba(255,255,255,0.1)',
       }}>
         <div className="flex items-center justify-between mb-5">
-          <h3 className="display-font text-3xl">NY DRIKKE</h3>
+          <h3 className="display-font text-3xl text-black">NY DRIKKE</h3>
           <button onClick={onClose} className="text-black/60 hover:text-black p-1">
             <X size={22} />
           </button>
@@ -942,7 +942,7 @@ function AddDrinkModal({ onClose, onSubmit }) {
           onClick={submit}
           className="w-full py-4 rounded-2xl font-bold text-lg transition-all active:scale-95 disabled:opacity-30"
           style={{
-            background: 'linear-gradient(135deg, #d4ff00 0%, #a3e635 100%)',
+            background: 'linear-gradient(135deg, #fffbd9 0%, #fffbd9 100%)',
             color: '#0a0814',
             boxShadow: canSubmit ? '0 8px 32px rgba(212,255,0,0.25)' : 'none',
           }}
@@ -969,7 +969,7 @@ function GenderButton({ active, onClick, label }) {
       onClick={onClick}
       className={`py-3 rounded-xl font-semibold transition ${active ? 'text-black' : 'text-black/70 glass'}`}
       style={active ? {
-        background: 'linear-gradient(135deg, #d4ff00 0%, #a3e635 100%)',
+        background: 'linear-gradient(135deg, #fffbd9 0%, #fffbd9 100%)',
         boxShadow: '0 4px 20px rgba(212,255,0,0.2)',
       } : {}}
     >
