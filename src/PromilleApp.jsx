@@ -7,7 +7,7 @@ import { supabase } from './supabase';
 const generateId = () => Math.random().toString(36).substring(2, 10) + Date.now().toString(36);
 
 const generateEventCode = () => {
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZÆØÅ23456789';
   let code = '';
   for (let i = 0; i < 5; i++) code += chars[Math.floor(Math.random() * chars.length)];
   return code;
@@ -55,7 +55,7 @@ const getStatusFromBAC = (bac) => {
   if (bac < 0.6) return { label: 'I siget', color: '#facc15', emoji: '😄' };
   if (bac < 1.0) return { label: 'Full', color: '#fb923c', emoji: '🥴' };
   if (bac < 1.8) return { label: 'Stupfull', color: '#ef4444', emoji: '😵' };
-  return { label: 'Farlig nivå', color: '#dc2626', emoji: '⚠️' };
+  return { label: 'Henta', color: '#dc2626', emoji: '⚠️' };
 };
 
 const formatBAC = (bac) => bac.toFixed(2).replace('.', ',');
@@ -452,7 +452,7 @@ function WelcomeScreen({ onCreate, onJoin }) {
           PROMILLEKALKULATOR
         </h2>
         <p className="text-white/50 text-sm max-w-xs">
-          Logg drikkene dine, følg promillen din, og se hvem som leder kvelden.
+          Logg drikken dine, og se promillen stige
         </p>
       </div>
       <div className="space-y-3 pb-6">
@@ -465,17 +465,17 @@ function WelcomeScreen({ onCreate, onJoin }) {
             boxShadow: '0 8px 32px rgba(212,255,0,0.25)',
           }}
         >
-          Start ny kveld
+          Start en ny kveld
         </button>
         <button
           onClick={onJoin}
           className="w-full py-5 rounded-2xl font-semibold text-lg glass-strong transition-transform active:scale-95"
         >
-          Bli med på kveld
+          Bli med på en kveld
         </button>
       </div>
       <p className="text-center text-white/30 text-xs px-4">
-        Estimater for moro skyld. Ikke bruk dette til å vurdere kjøreevne.
+        Have fun! Ikke gjør noe jeg ville gjort
       </p>
     </div>
   );
@@ -501,15 +501,15 @@ function CreateEventScreen({ onBack, onSubmit, error }) {
   return (
     <div className="flex-1 flex flex-col px-6 py-8 slide-up">
       <button onClick={onBack} className="text-white/60 text-sm mb-6 self-start hover:text-white">← Tilbake</button>
-      <h2 className="display-font text-4xl mb-1">Start kveld</h2>
-      <p className="text-white/50 mb-8 text-sm">Gi kvelden et navn og fyll inn deg selv</p>
+      <h2 className="display-font text-4xl mb-1">Start en kveld</h2>
+      <p className="text-white/50 mb-8 text-sm">Gi kvelden et navn og fyll inn informasjonen din</p>
 
       <div className="space-y-4 flex-1">
-        <Field label="Navn på kvelden (valgfritt)">
+        <Field label="Navn på kvelden">
           <input
             value={eventName}
             onChange={e => setEventName(e.target.value)}
-            placeholder="Lørdag på byen"
+            placeholder="Sommerfest"
             className="w-full px-4 py-3 rounded-xl glass text-white outline-none focus:border-white/30"
           />
         </Field>
@@ -543,7 +543,7 @@ function CreateEventScreen({ onBack, onSubmit, error }) {
           </div>
         )}
         <p className="text-white/30 text-xs">
-          Vekt og kjønn brukes i Widmark-formelen for å beregne promille.
+          Vekt og kjønn brukes for å beregne promille
         </p>
       </div>
 
@@ -584,14 +584,14 @@ function JoinEventScreen({ onBack, onSubmit, error, prefillCode }) {
     <div className="flex-1 flex flex-col px-6 py-8 slide-up">
       <button onClick={onBack} className="text-white/60 text-sm mb-6 self-start hover:text-white">← Tilbake</button>
       <h2 className="display-font text-4xl mb-1">Bli med</h2>
-      <p className="text-white/50 mb-8 text-sm">Bruk koden du fikk fra arrangøren</p>
+      <p className="text-white/50 mb-8 text-sm">Bruk koden du fikk fra den som lagde kvelden</p>
 
       <div className="space-y-4 flex-1">
-        <Field label="Kvelds-kode">
+        <Field label="Kveldens kode">
           <input
             value={code}
             onChange={e => setCode(e.target.value.toUpperCase())}
-            placeholder="ABC23"
+            placeholder="ABC123"
             maxLength={6}
             className="w-full px-4 py-3 rounded-xl glass text-white outline-none focus:border-white/30 tracking-widest text-center text-2xl display-font"
           />
@@ -685,7 +685,7 @@ function MainHub({ user, eventData, drinks, now, copied, shareCopied, showHistor
         onClick={onShare}
         className="w-full py-3 rounded-xl glass-strong text-sm font-semibold mb-5 flex items-center justify-center gap-2 active:scale-95 transition"
       >
-        {shareCopied ? <><Check size={16} className="text-lime-300" /> Lenken er kopiert!</> : <>📲 Del lenke med venninner</>}
+        {shareCopied ? <><Check size={16} className="text-lime-300" /> Lenken er kopiert!</> : <>📲 Del lenke med de andre</>}
       </button>
 
       <div className="glass-strong rounded-3xl p-6 mb-5 relative overflow-hidden">
@@ -770,8 +770,7 @@ function MainHub({ user, eventData, drinks, now, copied, shareCopied, showHistor
       </div>
 
       <p className="text-white/20 text-xs text-center mt-8 px-4 leading-relaxed">
-        Beregningene er kun estimater basert på Widmark-formelen. Ikke bruk dette til å vurdere
-        om du er skikket til å kjøre eller utføre andre risikofylte aktiviteter.
+        Promillen er kun et estimat. Jeg er ingen proff
       </p>
     </div>
   );
