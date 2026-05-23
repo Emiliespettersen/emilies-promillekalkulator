@@ -684,13 +684,6 @@ function MainHub({ user, eventData, drinks, now, copied, shareCopied, showHistor
         }} />
         <div className="relative">
           <div className="text-black/40 text-xs uppercase tracking-wider mb-1">Din promille</div>
-          <div 
-            className="text-black/40 text-xs uppercase tracking-wider mb-1"
-            style={{
-            textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'}}
-            >
-            Din promille
-          </div>
           <div className="flex items-baseline gap-2 mb-3">
             <div className="display-font text-8xl leading-none" 
               style={{color: status.color,textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'}}>
