@@ -49,6 +49,12 @@ const calculateBAC = (drinks, user, now) => {
   return total;
 };
 
+const getDrinkIcon = (volumeMl, alcoholPercent) => {
+  if (alcoholPercent >= 30) return '🥃';     
+  if (alcoholPercent >= 10) return volumeMl <= 200 ? '🍷' : '🍹';  
+  return '🍺';                             
+};
+
 const getStatusFromBAC = (bac) => {
   if (bac < 0.1) return { label: 'Edru', color: '#56c3e4', emoji: '💧' };
   if (bac < 0.3) return { label: 'Lett brisen', color: '#a3e635', emoji: '🍻' };
@@ -465,7 +471,7 @@ function WelcomeScreen({ onCreate, onJoin }) {
         </button>
       </div>
       <p className="text-center text-black/40 text-xs px-4">
-        Have fun! 
+        Laget av Emilie Seth-Smith Pettersen
       </p>
     </div>
   );
@@ -807,7 +813,9 @@ function DrinkRow({ drink }) {
       {drink.photo ? (
         <img src={drink.photo} alt="" className="w-12 h-12 rounded-lg object-cover" />
       ) : (
-        <div className="w-12 h-12 rounded-lg flex items-center justify-center text-2xl glass">🥃</div>
+        <div className="w-12 h-12 rounded-lg flex items-center justify-center text-2xl glass">
+          {getDrinkIcon(drink.volumeMl, drink.alcoholPercent)}
+        </div>
       )}
       <div className="flex-1 min-w-0">
         <div className="font-semibold text-sm">{drink.userName}</div>
