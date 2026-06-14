@@ -97,7 +97,7 @@ const loadEventData = async (code) => {
         gender: p.gender,
       };
     });
-
+    
     const drinks = {};
     Object.keys(participants).forEach(pid => { drinks[pid] = []; });
     (drinksRes.data || []).forEach(d => {
@@ -268,7 +268,7 @@ export default function PromilleApp() {
   const addDrink = async (drink) => {
     if (!user || !eventData) return;
     const drinkId = generateId();
-    const timestamp = Date.now();
+    const timestamp = drink.timestamp || Date.now();
 
     const { error } = await supabase.from('drinks').insert({
       id: drinkId,
@@ -836,6 +836,13 @@ function AddDrinkModal({ onClose, onSubmit }) {
   const [volumeMl, setVolumeMl] = useState('');
   const [processing, setProcessing] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [useCustomTime, setUseCustomTime] = useState(false);
+  const [customTime, setCustomTime] = useState(() => {
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2, '0');
+    const mm = String(now.getMinutes()).padStart(2, '0');
+    return `${hh}:${mm}`;
+  });
   const fileInput = useRef(null);
 
   const canSubmit = alcoholPercent && volumeMl &&
@@ -858,10 +865,22 @@ function AddDrinkModal({ onClose, onSubmit }) {
 
   const submit = async () => {
     setSubmitting(true);
+    let timestamp = Date.now();
+    if (useCustomTime && customTime) {
+      const [hh, mm] = customTime.split(':').map(Number);
+      const customDate = new Date();
+      customDate.setHours(hh, mm, 0, 0);
+      // Hvis valgt tid er i fremtiden, anta at det var i går
+      if (customDate.getTime() > Date.now()) {
+        customDate.setDate(customDate.getDate() - 1);
+      }
+      timestamp = customDate.getTime();
+    }
     await onSubmit({
       photo,
       alcoholPercent: Number(String(alcoholPercent).replace(',', '.')),
       volumeMl: Number(volumeMl),
+      timestamp,
     });
     setSubmitting(false);
   };
@@ -869,7 +888,6 @@ function AddDrinkModal({ onClose, onSubmit }) {
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center body-font" style={{ background: 'rgba(0,0,0,0.7)' }}>
       <div className="w-full max-w-md slide-up rounded-t-3xl sm:rounded-3xl p-6 max-h-[92vh] overflow-y-auto no-scrollbar" style={{
-        //background: 'linear-gradient(180deg, #1a1428 0%, #14101e 100%)',
         background: 'linear-gradient(135deg, #d4ff00 0%, #ff2d92 100%)',
         border: '1px solid rgba(255,255,255,0.1)',
       }}>
@@ -948,6 +966,38 @@ function AddDrinkModal({ onClose, onSubmit }) {
               className="w-full px-4 py-3 rounded-xl glass text-black outline-none focus:border-black/30"
             />
           </Field>
+        </div>
+
+        {/* NYTT: Tidligere klokkeslett */}
+        <div className="mb-5">
+          {!useCustomTime ? (
+            <button
+              onClick={() => setUseCustomTime(true)}
+              className="text-black/70 text-sm flex items-center gap-1.5 hover:text-black underline decoration-dotted underline-offset-4"
+            >
+              <Clock size={14} /> Drakk jeg tidligere? Sett klokkeslett
+            </button>
+          ) : (
+            <Field label="Klokkeslett (HH:MM)">
+              <div className="flex items-center gap-2">
+                <input
+                  type="time"
+                  value={customTime}
+                  onChange={e => setCustomTime(e.target.value)}
+                  className="flex-1 px-4 py-3 rounded-xl glass text-black outline-none focus:border-black/30"
+                />
+                <button
+                  onClick={() => setUseCustomTime(false)}
+                  className="px-3 py-3 rounded-xl glass text-black/70 hover:text-black text-sm font-semibold"
+                >
+                  Bruk nå
+                </button>
+              </div>
+              <div className="text-black/50 text-xs mt-1">
+                Hvis tiden er etter nå, antas det at det var i går.
+              </div>
+            </Field>
+          )}
         </div>
 
         <button
