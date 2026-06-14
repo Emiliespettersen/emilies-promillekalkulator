@@ -968,14 +968,13 @@ function AddDrinkModal({ onClose, onSubmit }) {
           </Field>
         </div>
 
-        {/* NYTT: Tidligere klokkeslett */}
         <div className="mb-5">
           {!useCustomTime ? (
             <button
               onClick={() => setUseCustomTime(true)}
               className="text-black/70 text-sm flex items-center gap-1.5 hover:text-black underline decoration-dotted underline-offset-4"
             >
-              <Clock size={14} /> Drakk jeg tidligere? Sett klokkeslett
+              <Clock size={14} /> Glemt å logge? Det kan skje den beste. Sett tidspunktet her!
             </button>
           ) : (
             <Field label="Klokkeslett (HH:MM)">
@@ -986,15 +985,6 @@ function AddDrinkModal({ onClose, onSubmit }) {
                   onChange={e => setCustomTime(e.target.value)}
                   className="flex-1 px-4 py-3 rounded-xl glass text-black outline-none focus:border-black/30"
                 />
-                <button
-                  onClick={() => setUseCustomTime(false)}
-                  className="px-3 py-3 rounded-xl glass text-black/70 hover:text-black text-sm font-semibold"
-                >
-                  Bruk nå
-                </button>
-              </div>
-              <div className="text-black/50 text-xs mt-1">
-                Hvis tiden er etter nå, antas det at det var i går.
               </div>
             </Field>
           )}
